@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+body, html, #root {
+  background-color: #18181B; /* Set to any color matching your design */
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'CoffeeHealing';
+  src: url('/src/assets/fonts/CoffeeHealing-1GrKe.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CoffeeHealing';
+  src: url('/src/assets/fonts/CoffeeHealingItalic-RpP6o.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Burvetica';
+  src: url('/src/assets/fonts/BurveticaNC.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Burvetica';
+  src: url('/src/assets/fonts/BurveticaThickNC.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'HelloSwashes';
+  src: url('/src/assets/fonts/HelloSwashes-nRW01.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Default: Hide scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #18181B;
+}
+
+/* Thumb */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 0, 0,0.7);
+  border-radius: 10px;
+}
+
