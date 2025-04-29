@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
 
 const Loading = ({ onComplete }) => {
   const [load, setLoad] = useState(0);
@@ -27,13 +27,13 @@ const Loading = ({ onComplete }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.5 }}
-        className="w-full flex justify-center items-center"
+        className="w-full  flex justify-center items-center"
       >
         <motion.div
           initial={{ opacity: 1 }}
           animate={{ opacity: 0 }}
           transition={{ duration: 1.95, delay: 1.5 }}
-          className="flex justify-center items-center font-[CoffeeHealing] text-9xl text-red-600 italic"
+          className="loading flex justify-center items-center font-[CoffeeHealing] lg:text-9xl sm:text-6xl md:text-7xl text-red-600 italic"
         >
           Nikhil's Portfolio {load}%
         </motion.div>

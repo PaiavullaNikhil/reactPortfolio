@@ -1,13 +1,14 @@
-import React from "react";
 import { motion } from "framer-motion";
+import React from "react";
 
 const Navbar = () => {
   return (
     <div>
-      <nav className="fixed top-0 left-0 w-full flex justify-between items-center py-4 z-10">
+<nav className="fixed top-0 left-0 w-full flex justify-between items-center py-4 z-10 bg-transparent backdrop-blur-sm">
+
         <div className="flex space-x-4 w-full justify-between px-10 items-center font-[CoffeeHealing] text-2xl">
-          <motion.a
-            href="/home"
+          <motion.div
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="text-white relative pb-1"
             whileHover={{ scale: 1.05 }}
           >
@@ -22,13 +23,13 @@ const Navbar = () => {
                 transition: { duration: 0.5, ease: "easeInOut" },
               }}
             />
-          </motion.a>
-          <motion.a
-            href="#about"
+          </motion.div>
+          <motion.div
+            onClick={() => window.scrollTo({ top: 870, behavior: "smooth" })}
             className="text-white relative pb-1"
             whileHover={{ scale: 1.05 }}
           >
-            Socials
+            About
             <motion.div
               className="absolute left-0 bottom-0 w-full h-[2px] bg-white"
               initial={{ scaleX: 0, originX: 0 }}
@@ -39,9 +40,9 @@ const Navbar = () => {
                 transition: { duration: 0.5, ease: "easeInOut" },
               }}
             />
-          </motion.a>
-          <motion.a
-            href="#project"
+          </motion.div>
+          <motion.div
+            onClick={() => window.scrollTo({ top: 1800, behavior: "smooth" })}
             className="text-white relative pb-1"
             whileHover={{ scale: 1.05 }}
           >
@@ -56,10 +57,10 @@ const Navbar = () => {
                 transition: { duration: 0.5, ease: "easeInOut" },
               }}
             />
-          </motion.a>
+          </motion.div>
 
-          <motion.a
-            href="#contact"
+          <motion.div
+            onClick={() => window.scrollTo({ top: 3850, behavior: "smooth" })}
             className="text-white relative pb-1"
             whileHover={{ scale: 1.05 }}
           >
@@ -74,7 +75,7 @@ const Navbar = () => {
                 transition: { duration: 0.5, ease: "easeInOut" },
               }}
             />
-          </motion.a>
+          </motion.div>
         </div>
       </nav>
     </div>
