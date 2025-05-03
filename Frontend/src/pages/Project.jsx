@@ -1,5 +1,9 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef, useState } from "react";
+import project1 from "../assets/Images/Project1.png";
+import project2 from "../assets/Images/Project2.png";
+import project3 from "../assets/Images/Project3.png";
+import project4 from "../assets/Images/Project4.png";
 import ProjectCard from "../components/ProjectCard";
 
 const Project = () => {
@@ -35,43 +39,43 @@ const Project = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
+      title: "Project Management Tool",
       description:
-        "A full-stack e-commerce solution with user authentication, product catalog, and payment integration.",
+        "A streamlined project management tool for tracking tasks and team collaboration in one place.",
       tags: ["React", "Node.js", "MongoDB"],
       liveLink: "https://project-ecommerce.example.com",
-      githubLink: "https://github.com/yourusername/ecommerce-platform",
-      image: "/api/placeholder/400/200",
+      githubLink: "https://github.com/Rishben/ProjectManagementTool",
+      image: project1,
     },
     {
       id: 2,
-      title: "Weather Dashboard",
+      title: "Theme Generator",
       description:
-        "Interactive weather application providing real-time forecasts using external APIs.",
-      tags: ["JavaScript", "API", "CSS"],
-      liveLink: "https://weather-app.example.com",
-      githubLink: "https://github.com/yourusername/weather-dashboard",
-      image: "/api/placeholder/400/200",
+        "A web app that lets users effortlessly create, customize, and export stunning color themes for their projects.",
+      tags: ["HTML", "CSS", "JavaScript"],
+      liveLink: "https://rishben.github.io/Color-Theme-Generator/",
+      githubLink: "https://github.com/Rishben/Color-Theme-Generator",
+      image: project2,
     },
     {
       id: 3,
-      title: "Task Management System",
+      title: "Tesla Website",
       description:
-        "Collaborative project management tool with drag-and-drop interface.",
-      tags: ["React", "Firebase", "Redux"],
-      liveLink: "https://task-manager.example.com",
-      githubLink: "https://github.com/yourusername/task-management",
-      image: "/api/placeholder/400/200",
+        "An interactive 3D website showcasing a Tesla model using GLB files for immersive real-time visualization.",
+      tags: ["HTML", "CSS", "JavaScript"],
+      liveLink: "https://rishben.github.io/TeslaWebsite/",
+      githubLink: "https://github.com/Rishben/TeslaWebsite",
+      image: project3,
     },
     {
       id: 4,
-      title: "Portfolio Website",
+      title: "Weather App",
       description:
-        "Personal portfolio website showcasing projects and skills with modern UI/UX design.",
+        "A responsive weather app that displays real-time forecasts with dynamic visuals.",
       tags: ["React", "Framer Motion", "Tailwind"],
-      liveLink: "https://portfolio.example.com",
-      githubLink: "https://github.com/yourusername/portfolio",
-      image: "/api/placeholder/400/200",
+      liveLink: "https://weatherapp-rishben.netlify.app",
+      githubLink: "https://github.com/Rishben/WeatherReact",
+      image: project4,
     },
     {
       id: 5,
