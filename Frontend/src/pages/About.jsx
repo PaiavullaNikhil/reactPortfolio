@@ -160,14 +160,8 @@ const About = () => {
 
   return (
     <>
-      {/* Added overflow-x-hidden to prevent horizontal scrollbar */}
       <div className="relative w-full flex justify-center min-h-screen bg-zinc-900 overflow-x-hidden">
-        {/* Background Glow Effect - Contained within parent */}
         <div className="absolute w-full max-w-6xl flex justify-center h-full">
-          {/* <div
-            className="absolute w-96 h-96 bg-red-600/20 rounded-full filter blur-3xl"
-            style={{ top: 70, left: 20}}
-          /> */}
           <div
             className="absolute w-96 h-96 bg-blue-600/20 rounded-full filter blur-3xl"
             style={{ bottom: 170, right: 20 }}
@@ -320,7 +314,7 @@ const About = () => {
           </div>
 
           {/* Image Section */}
-          <div className="w-full lg:w-1/2 order-1 lg:order-2 flex justify-center items-center mb-12 lg:mb-0 relative z-20">
+          <div className="w-full lg:w-1/2 order-1 lg:order-2 flex justify-center items-center mb-12 lg:mb-0 relative">
             <motion.div
               initial={{ opacity: 0, scale: 0.9, rotate: -8 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
