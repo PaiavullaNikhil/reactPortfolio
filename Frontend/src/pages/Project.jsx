@@ -4,6 +4,7 @@ import project1 from "../assets/Images/Project1.png";
 import project2 from "../assets/Images/Project2.png";
 import project3 from "../assets/Images/Project3.png";
 import project4 from "../assets/Images/Project4.png";
+import project5 from "../assets/Images/Project5.png"; 
 import ProjectCard from "../components/ProjectCard";
 
 const Project = () => {
@@ -79,13 +80,13 @@ const Project = () => {
     },
     {
       id: 5,
-      title: "Chat Application",
+      title: "ML Heart Stroke Predictor",
       description:
-        "Real-time messaging platform with user authentication and media sharing.",
-      tags: ["Socket.io", "Express", "React"],
-      liveLink: "https://chat-app.example.com",
-      githubLink: "https://github.com/yourusername/chat-application",
-      image: "/api/placeholder/400/200",
+        "Heart disease predictor using KNN model with Flask and React frontend.",
+      tags: ["ML", "React", "Flask", "KNN Model"],
+      liveLink: "https://ml-heart-disease-predictor-xga7.onrender.com/",
+      githubLink: "https://github.com/Rishben/ML-heart_disease_predictor",
+      image: project5,
     },
     {
       id: 6,
