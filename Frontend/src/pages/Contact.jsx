@@ -31,7 +31,7 @@ const Contact = () => {
     e.preventDefault();
     setFormStatus(prev => ({ ...prev, isSubmitting: true }));  
     try {
-      const response = await fetch('http://localhost:3000/api/contact', {
+      const response = await fetch('https://reactportfolio-7y6m.onrender.com/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -280,9 +280,9 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="w-full lg:w-2/5"
           >
-            <div className="bg-zinc-800/30 backdrop-blur-sm border border-zinc-700 rounded-2xl p-6 md:p-8 shadow-xl h-full">
+            <div className="bg-zinc-800/30 backdrop-blur-sm border border-zinc-700 rounded-2xl p-6 md:p-8 shadow-xl h-full overflow-hidden">
               <motion.h2 
-                className="text-3xl md:text-4xl font-bold text-white mb-6"
+                className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6"
                 variants={dopplerEffect}
                 whileHover="hover"
                 onMouseEnter={textEnter}
@@ -291,28 +291,30 @@ const Contact = () => {
                 Contact <span className="text-red-500">Info</span>
               </motion.h2>           
               
-              <div className="space-y-6 mb-12">
+              <div className="space-y-6 mb-8 lg:mb-12">
                 {socialContacts.map((contact, index) => (
                   <motion.div 
                     key={index} 
-                    className="flex items-start"
+                    className="flex items-start space-x-4 overflow-hidden"
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
-                    <div className="bg-zinc-800 p-3 rounded-lg mr-4">
+                    <div className="bg-zinc-800 p-3 rounded-lg flex-shrink-0">
                       <div className="text-red-500">{contact.icon}</div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white">{contact.name}</h3>
-                      <p className="text-lg text-zinc-400">{contact.value}</p>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg md:text-xl font-bold text-white mb-1">{contact.name}</h3>
+                      <p className="text-sm md:text-base lg:text-lg text-zinc-400 break-words break-all">
+                        {contact.value}
+                      </p>
                     </div>
                   </motion.div>
                 ))}
               </div>              
               
-              <div className="mt-8">
+              <div className="mt-6 lg:mt-8">
                 <motion.h3 
-                  className="text-2xl font-bold text-white mb-4"
+                  className="text-xl md:text-2xl font-bold text-white mb-4"
                   variants={dopplerEffect}
                   whileHover="hover"
                   onMouseEnter={textEnter}
@@ -320,7 +322,7 @@ const Contact = () => {
                 >
                   Business Hours
                 </motion.h3>
-                <div className="space-y-2 text-lg text-zinc-400">
+                <div className="space-y-2 text-sm md:text-base lg:text-lg text-zinc-400">
                   <p>Monday - Friday: 9am - 6pm</p>
                   <p>Saturday: By appointment</p>
                   <p>Sunday: Closed</p>
