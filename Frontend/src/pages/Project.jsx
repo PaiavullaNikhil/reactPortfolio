@@ -1,10 +1,11 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import React, { useRef, useState } from "react";
-import project1 from "../assets/Images/Project1.png";
+import { useRef, useState } from "react";
+import proj1 from "../assets/Images/Proj1.png";
 import project2 from "../assets/Images/Project2.png";
 import project3 from "../assets/Images/Project3.png";
 import project4 from "../assets/Images/Project4.png";
-import project5 from "../assets/Images/Project5.png"; 
+import project5 from "../assets/Images/Project5.png";
+import project6 from "../assets/Images/Project6.png";
 import ProjectCard from "../components/ProjectCard";
 
 const Project = () => {
@@ -12,24 +13,25 @@ const Project = () => {
   const translateY = useTransform(scrollYProgress, [0, 1], [0, -50]);
   const rotate = useTransform(scrollYProgress, [0, 0.8], [0, 15]);
   const [showAllProjects, setShowAllProjects] = useState(false);
-  
+
   // References for sections
   const projectsRef = useRef(null);
 
   // Toggle function with scroll to additional projects
   const toggleProjects = () => {
     setShowAllProjects(!showAllProjects);
-    
+
     // If we're showing all projects, scroll down slightly after a small delay
     // to make sure the new projects are visible
     if (!showAllProjects) {
       setTimeout(() => {
         if (projectsRef.current) {
           const rect = projectsRef.current.getBoundingClientRect();
-          const scrollTarget = window.scrollY + rect.bottom - window.innerHeight + 200;
+          const scrollTarget =
+            window.scrollY + rect.bottom - window.innerHeight + 200;
           window.scrollTo({
             top: scrollTarget,
-            behavior: 'smooth'
+            behavior: "smooth",
           });
         }
       }, 100);
@@ -40,46 +42,28 @@ const Project = () => {
   const projects = [
     {
       id: 1,
-      title: "Project Management Tool",
+      title:
+        " ProjX: A MERN Stack Project Management ToolProject Management Tool",
       description:
         "A streamlined project management tool for tracking tasks and team collaboration in one place.",
-      tags: ["React", "Node.js", "MongoDB"],
-      liveLink: "https://project-ecommerce.example.com",
-      githubLink: "https://github.com/Rishben/ProjectManagementTool",
-      image: project1,
+      tags: ["React", "Node.js", "Express.js", "MongoDB"],
+      liveLink: "https://project-manager-g042.onrender.com",
+      githubLink: "https://github.com/Rishben/project-manager",
+      image: proj1,
     },
     {
       id: 2,
-      title: "Theme Generator",
+      title: "Coal Mine Carbon Management",
       description:
-        "A web app that lets users effortlessly create, customize, and export stunning color themes for their projects.",
-      tags: ["HTML", "CSS", "JavaScript"],
-      liveLink: "https://rishben.github.io/Color-Theme-Generator/",
-      githubLink: "https://github.com/Rishben/Color-Theme-Generator",
-      image: project2,
+        "A platform that helps coal mines track, reduce, and neutralize their carbon emissions for a greener future.",
+      tags: ["React", "API", "Tailwind"],
+      liveLink: "https://carbonfootprint-swsa.onrender.com",
+      githubLink: "https://github.com/cpy-ninja05/CarbonFootprint",
+      image: project6,
     },
+
     {
       id: 3,
-      title: "Tesla Website",
-      description:
-        "An interactive 3D website showcasing a Tesla model using GLB files for immersive real-time visualization.",
-      tags: ["HTML", "CSS", "JavaScript"],
-      liveLink: "https://rishben.github.io/TeslaWebsite/",
-      githubLink: "https://github.com/Rishben/TeslaWebsite",
-      image: project3,
-    },
-    {
-      id: 4,
-      title: "Weather App",
-      description:
-        "A responsive weather app that displays real-time forecasts with dynamic visuals.",
-      tags: ["React", "Framer Motion", "Tailwind"],
-      liveLink: "https://weatherapp-rishben.netlify.app",
-      githubLink: "https://github.com/Rishben/WeatherReact",
-      image: project4,
-    },
-    {
-      id: 5,
       title: "ML Heart Stroke Predictor",
       description:
         "Heart disease predictor using KNN model with Flask and React frontend.",
@@ -89,14 +73,33 @@ const Project = () => {
       image: project5,
     },
     {
-      id: 6,
-      title: "Recipe Finder",
+      id: 4,
+      title: "Tesla Website",
       description:
-        "Search engine for recipes with filtering options and user collections.",
-      tags: ["JavaScript", "API", "Bootstrap"],
-      liveLink: "https://recipe-finder.example.com",
-      githubLink: "https://github.com/yourusername/recipe-finder",
-      image: "/api/placeholder/400/200",
+        "An interactive 3D website showcasing a Tesla model using GLB files for immersive real-time visualization.",
+      tags: ["HTML", "CSS", "JavaScript"],
+      liveLink: "https://rishben.github.io/TeslaWebsite/",
+      githubLink: "https://github.com/Rishben/TeslaWebsite",
+      image: project3,
+    },
+    {
+      id: 5,
+      title: "Weather App",
+      description:
+        "A responsive weather app that displays real-time forecasts with dynamic visuals.",
+      tags: ["React", "Framer Motion", "Tailwind"],
+      liveLink: "https://weatherapp-rishben.netlify.app",
+      githubLink: "https://github.com/Rishben/WeatherReact",
+      image: project4,
+    },{
+      id: 6,
+      title: "Theme Generator",
+      description:
+        "A web app that lets users effortlessly create, customize, and export stunning color themes for their projects.",
+      tags: ["HTML", "CSS", "JavaScript"],
+      liveLink: "https://rishben.github.io/Color-Theme-Generator/",
+      githubLink: "https://github.com/Rishben/Color-Theme-Generator",
+      image: project2,
     },
   ];
 
@@ -118,22 +121,28 @@ const Project = () => {
   const displayedProjects = showAllProjects ? projects : projects.slice(0, 3);
 
   return (
-    <div id="projects" className="relative w-full bg-zinc-900 text-white overflow-hidden">
+    <div
+      id="projects"
+      className="relative w-full bg-zinc-900 text-white overflow-hidden"
+    >
       {/* Simplified Background Glow Effect */}
       <div className="absolute w-full max-w-6xl flex justify-center h-full">
-          <div
-            className="absolute w-96 h-96 bg-red-600/20 rounded-full filter blur-3xl"
-            style={{ top:100, right: -300}}
-          />
-          <div
-            className="absolute w-96 h-96 bg-blue-600/20 rounded-full filter blur-3xl"
-            style={{ top: 120, right: -500 }}
-          />
-        </div>
+        <div
+          className="absolute w-96 h-96 bg-red-600/20 rounded-full filter blur-3xl"
+          style={{ top: 100, right: -300 }}
+        />
+        <div
+          className="absolute w-96 h-96 bg-blue-600/20 rounded-full filter blur-3xl"
+          style={{ top: 120, right: -500 }}
+        />
+      </div>
 
       {/* Simplified code-inspired background elements */}
       <div className="absolute inset-0 overflow-hidden opacity-5">
-        <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className="absolute w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M0,100 Q300,150 500,50 T1000,120"
             fill="none"
@@ -186,20 +195,11 @@ const Project = () => {
                 <span className="text-red-500 font-[HelloSwashes]">Me</span>
               </motion.h1>
 
-              <motion.p
-                className="text-2xl md:text-3xl lg:text-4xl text-white mb-8 leading-relaxed"
-              >
+              <motion.p className="text-2xl md:text-3xl lg:text-4xl text-white mb-8 leading-relaxed">
                 A showcase of my{" "}
                 <span className="text-red-500 font-bold">creative</span> work
                 and technical{" "}
                 <span className="text-red-500 font-bold">expertise</span>.
-              </motion.p>
-
-              <motion.p
-                className="text-2xl md:text-3xl text-zinc-400 mb-8 leading-relaxed" 
-              >
-                Each project represents a unique challenge and solution,
-                showcasing my skills in web development.
               </motion.p>
             </motion.div>
           </div>
@@ -226,7 +226,7 @@ const Project = () => {
                   duration: 8,
                   repeat: Infinity,
                   ease: "linear",
-                  repeatType: "reverse"
+                  repeatType: "reverse",
                 }}
               >
                 <svg
@@ -270,13 +270,13 @@ const Project = () => {
           {/* Projects container with simplified animation */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {displayedProjects.map((project, index) => (
-              <motion.div 
+              <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ 
+                transition={{
                   duration: 0.4,
-                  delay: index * 0.08
+                  delay: index * 0.08,
                 }}
               >
                 <ProjectCard
