@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import pic3 from "../assets/Images/pic1.jpg";
-import resumePDF from "../assets/MyResume.pdf";
+import resumePDF from "../assets/Resume_PaiavullaNikhil.pdf";
 
 const About = () => {
   const { scrollYProgress } = useScroll();
@@ -348,25 +348,28 @@ const About = () => {
 
       {/* Resume Modal - Added higher z-index */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-hidden">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.5 }}
-            className="bg-white rounded-xl shadow-2xl w-full max-w-4xl h-full flex flex-col overflow-hidden"
+            className="bg-white rounded-xl shadow-2xl w-full max-w-4xl h-[90vh] flex flex-col overflow-hidden"
           >
-            <div className="p-5 border-b border-gray-200 flex justify-between items-center">
-              <h3 className="text-3xl font-bold tracking-tighter text-gray-800">
+            {/* Header */}
+            <div className="p-4 sm:p-5 border-b border-gray-200 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+              <h3 className="text-2xl sm:text-3xl font-bold tracking-tighter text-gray-800 text-center sm:text-left">
                 My <span className="text-red-500">Resume</span>
               </h3>
-              <div className="flex gap-4">
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
                 <motion.a
                   href={resumePDF}
                   download="Nikhil_Resume.pdf"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-red-600 text-white px-6 py-3 rounded-full font-medium text-lg hover:bg-red-700 transition-all duration-300 flex items-center"
+                  className="bg-red-600 text-white px-5 py-2 rounded-full font-medium text-base sm:text-lg hover:bg-red-700 transition-all duration-300 flex items-center justify-center"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -388,13 +391,14 @@ const About = () => {
                   onClick={handleCloseModal}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-zinc-200 text-zinc-700 px-6 py-3 rounded-full font-medium text-lg hover:bg-zinc-300 transition-all duration-300"
+                  className="bg-zinc-200 text-zinc-700 px-5 py-2 rounded-full font-medium text-base sm:text-lg hover:bg-zinc-300 transition-all duration-300"
                 >
                   Close
                 </motion.button>
               </div>
             </div>
 
+            {/* Resume Content */}
             <div className="flex-1 overflow-auto p-1 bg-gray-100">
               <iframe
                 src={`${resumePDF}#view=FitH`}
