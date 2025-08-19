@@ -68,7 +68,7 @@ const About = () => {
     },
     {
       name: "GitHub",
-      url: "https://github.com/Rishben",
+      url: "https://github.com/PaiavullaNikhil",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
