@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import React from "react";
 
 const ProjectCard = ({ project, index, hoveredProject, setHoveredProject, textEnter, textLeave }) => {
   // Animation variants
@@ -33,7 +32,12 @@ const ProjectCard = ({ project, index, hoveredProject, setHoveredProject, textEn
       variants={cardVariants}
       onMouseEnter={() => setHoveredProject(project.id)}
       onMouseLeave={() => setHoveredProject(null)}
-      className={`relative bg-slate-800/70 backdrop-blur-sm rounded-xl overflow-hidden border ${
+className={`relative bg-slate-800/70 backdrop-blur-sm h-full 
+    min-w-[280px] sm:min-w-[340px] md:min-w-[380px] lg:min-w-[580px] 
+    rounded-xl overflow-hidden border
+    ${hoveredProject === project.id 
+      ? "border-red-500/50 shadow-xl shadow-red-500/10 scale-105" 
+      : "border-slate-700 scale-100"}  ${
         hoveredProject === project.id 
           ? "border-red-500/50 shadow-xl shadow-red-500/10" 
           : "border-slate-700"
@@ -41,7 +45,6 @@ const ProjectCard = ({ project, index, hoveredProject, setHoveredProject, textEn
         hoveredProject === project.id ? "scale-105" : "scale-100"
       }`}
     >
-      {/* Corner decoration */}
       {hoveredProject === project.id && (
         <motion.div 
           initial={{ opacity: 0, scale: 0 }}
@@ -56,8 +59,7 @@ const ProjectCard = ({ project, index, hoveredProject, setHoveredProject, textEn
         </motion.div>
       )}
 
-      {/* Project Image */}
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-68 overflow-hidden">
         <motion.img
           src={project.image}
           alt={project.title}

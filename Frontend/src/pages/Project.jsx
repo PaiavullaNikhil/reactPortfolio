@@ -1,5 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLayoutEffect, useRef, useState } from "react";
 import proj1 from "../assets/Images/Proj1.png";
 import project2 from "../assets/Images/Project2.png";
 import project3 from "../assets/Images/Project3.png";
@@ -7,36 +9,61 @@ import project4 from "../assets/Images/Project4.png";
 import project5 from "../assets/Images/Project5.png";
 import project6 from "../assets/Images/Project6.png";
 import ProjectCard from "../components/ProjectCard";
+gsap.registerPlugin(ScrollTrigger);
 
 const Project = () => {
   const { scrollYProgress } = useScroll();
-  const translateY = useTransform(scrollYProgress, [0, 1], [0, -50]);
   const rotate = useTransform(scrollYProgress, [0, 0.8], [0, 15]);
-  const [showAllProjects, setShowAllProjects] = useState(false);
 
   // References for sections
   const projectsRef = useRef(null);
+  const containerRef = useRef(null);
 
-  // Toggle function with scroll to additional projects
-  const toggleProjects = () => {
-    setShowAllProjects(!showAllProjects);
+  useLayoutEffect(() => {
+    const container = containerRef.current;   // pinned section (plain <section>)
+    const row = projectsRef.current;          // the flex row that moves
 
-    // If we're showing all projects, scroll down slightly after a small delay
-    // to make sure the new projects are visible
-    if (!showAllProjects) {
-      setTimeout(() => {
-        if (projectsRef.current) {
-          const rect = projectsRef.current.getBoundingClientRect();
-          const scrollTarget =
-            window.scrollY + rect.bottom - window.innerHeight + 200;
-          window.scrollTo({
-            top: scrollTarget,
-            behavior: "smooth",
-          });
-        }
-      }, 100);
-    }
-  };
+    if (!container || !row) return;
+
+    // Helper to compute max horizontal shift
+    const getMaxX = () => {
+      const max = row.scrollWidth - container.clientWidth;
+      return Math.max(0, max);
+    };
+
+    // Reset X on refresh to prevent “vanish” from stale transforms
+    const tween = gsap.to(row, {
+      x: () => -getMaxX(),
+      ease: "none",
+      scrollTrigger: {
+        trigger: container,
+        start: "top top",
+        end: () => "+=" + getMaxX(),
+        pin: true,
+        pinSpacing: true,
+        scrub: 1.5,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onRefresh: () => gsap.set(row, { x: 0 }),
+        // markers: true, // uncomment to debug
+      },
+    });
+
+    // Refresh after images load (widths change!)
+    const imgs = Array.from(row.querySelectorAll("img"));
+    const onImgLoad = () => ScrollTrigger.refresh();
+    imgs.forEach(img => { if (!img.complete) img.addEventListener("load", onImgLoad); });
+
+    // Refresh on resize
+    window.addEventListener("resize", ScrollTrigger.refresh);
+
+    return () => {
+      imgs.forEach(img => img.removeEventListener("load", onImgLoad));
+      window.removeEventListener("resize", ScrollTrigger.refresh);
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
+  }, []);
 
   // Sample projects data
   const projects = [
@@ -91,7 +118,7 @@ const Project = () => {
       liveLink: "https://weatherapp-rishben.netlify.app",
       githubLink: "https://github.com/Rishben/WeatherReact",
       image: project4,
-    },{
+    }, {
       id: 6,
       title: "Theme Generator",
       description:
@@ -118,7 +145,7 @@ const Project = () => {
   };
 
   // Calculate which projects to display based on state
-  const displayedProjects = showAllProjects ? projects : projects.slice(0, 3);
+  const displayedProjects = projects;
 
   return (
     <div
@@ -249,16 +276,9 @@ const Project = () => {
         </div>
 
         {/* Projects Section */}
-        <motion.section
-          ref={projectsRef}
-          className="py-20"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }}
-        >
+        <section ref={containerRef} className="py-20 relative">
           <motion.h2
-            className="text-4xl md:text-5xl text-red-500 font-bold mb-12 text-center"
+            className="text-4xl md:text-5xl text-red-500 font-bold mb-30 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -267,43 +287,29 @@ const Project = () => {
             Featured Work
           </motion.h2>
 
-          {/* Projects container with simplified animation */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {displayedProjects.map((project, index) => (
+          {/* Row that moves horizontally */}
+          <div
+            ref={projectsRef}
+            className="flex flex-row items-stretch gap-8 md:gap-12 lg:gap-50 xl:gap-60  will-change-transform"
+          >
+            {projects.map((project, index) => (
               <motion.div
                 key={project.id}
+                className="project-card flex-shrink-0 w-[420px]"
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.4,
-                  delay: index * 0.08,
-                }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
               >
-                <ProjectCard
-                  project={project}
-                  index={index}
-                  hoveredProject={hoveredProject}
-                  setHoveredProject={setHoveredProject}
-                />
+                <ProjectCard project={project} index={index} />
               </motion.div>
             ))}
-          </div>
 
-          {/* Project count indicator */}
-          <div className="text-center mt-8 text-zinc-400">
-            Showing {displayedProjects.length} of {projects.length} projects
+            {/* Optional spacer so the LAST card can be fully in-frame on stop */}
+            {/* <div className="flex-shrink-0" style={{ width: "calc(100vw - 420px)" }} /> */}
           </div>
+        </section>
 
-          {/* "View More" Button */}
-          <div className="flex justify-center mt-8">
-            <button
-              onClick={toggleProjects}
-              className="bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-full font-medium text-2xl transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-95 relative z-20 border-2 border-red-500"
-            >
-              {showAllProjects ? "Show Fewer Projects" : "Show All Projects"}
-            </button>
-          </div>
-        </motion.section>
+
       </div>
     </div>
   );

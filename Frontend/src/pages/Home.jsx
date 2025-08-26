@@ -71,6 +71,7 @@ const Home = () => {
       /> */}
 
       <motion.div
+        id="home"
         ref={homeRef}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -110,7 +111,7 @@ const Home = () => {
             onMouseLeave={textLeave}
             variants={dopplerEffect}
             whileHover="hover"
-            // initial="rest"
+          // initial="rest"
           >
             <span className="inline-block text-red-500 font-[HelloSwashes] mr-2">
               Web

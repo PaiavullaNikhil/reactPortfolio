@@ -120,7 +120,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="relative w-full max-w-8xl min-h-screen bg-zinc-900 overflow-x-hidden">  
+    <div id="contact" className="relative w-full max-w-8xl min-h-screen bg-zinc-900 overflow-x-hidden">  
       {/* Background Glow Effect */}
       <div className="absolute w-full max-w-6xl flex justify-center h-full">
           <div

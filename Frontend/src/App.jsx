@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Loading from './components/Loading1';
 import Home from './pages/Home';
+import Lenis from 'lenis'
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -10,10 +11,22 @@ const App = () => {
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 3200); // 3 seconds
-
-    // Cleanup to prevent memory leaks
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+    return () => {
+      lenis.destroy();
+    }
+  }, [])
+
 
   return (
     <div>

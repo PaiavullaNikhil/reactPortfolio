@@ -160,7 +160,7 @@ const About = () => {
 
   return (
     <>
-      <div className="relative w-full flex justify-center min-h-screen bg-zinc-900 overflow-x-hidden">
+      <div id="about" className="relative w-full flex justify-center min-h-screen bg-zinc-900 overflow-x-hidden">
         <div className="absolute w-full max-w-6xl flex justify-center h-full">
           <div
             className="absolute w-96 h-96 bg-blue-600/20 rounded-full filter blur-3xl"
