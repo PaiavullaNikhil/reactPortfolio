@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,10 +11,10 @@ const Navbar = () => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
-    
+
     return () => {
       window.removeEventListener("resize", checkScreenSize);
     };
@@ -28,16 +28,19 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
-  const scrollTo = (position) => {
-    window.scrollTo({ top: position, behavior: "smooth" });
-    closeMenu();
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      closeMenu();
+    }
   };
 
   const menuItems = [
-    { name: "Home", position: 0 },
-    { name: "About", position: 870 },
-    { name: "Projects", position: 1800 },
-    { name: "Contact Me", position: 3850 },
+    { name: "Home", id: "home" },
+    { name: "About", id: "about" },
+    { name: "Projects", id: "projects" },
+    { name: "Contact Me", id: "contact" },
   ];
 
   const mobileMenuVariants = {
@@ -74,7 +77,7 @@ const Navbar = () => {
           {menuItems.map((item, index) => (
             <motion.div
               key={index}
-              onClick={() => scrollTo(item.position)}
+              onClick={() => scrollToSection(item.id)}   // ✅ use id instead of position
               className="text-white relative pb-1 cursor-pointer"
               whileHover={{ scale: 1.05 }}
             >
@@ -97,16 +100,14 @@ const Navbar = () => {
       <div className={`md:hidden fixed top-14 left-0 w-full bg-black/5 backdrop-blur-lg z-10 ${isOpen ? 'block' : 'hidden'}`}>
         <div className="flex flex-col items-center py-6 space-y-6 font-[CoffeeHealing] text-2xl">
           {menuItems.map((item, index) => (
-            <div
+            <motion.div
               key={index}
-              onClick={() => scrollTo(item.position)}
+              onClick={() => scrollToSection(item.id)}
               className="text-white relative pb-1 cursor-pointer"
+              whileHover={{ scale: 1.05 }}
             >
               {item.name}
-              <div
-                className="absolute left-0 bottom-0 w-full h-[2px] bg-white"
-              />
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
