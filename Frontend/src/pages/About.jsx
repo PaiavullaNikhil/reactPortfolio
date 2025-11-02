@@ -1,7 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import pic3 from "../assets/Images/pic1.jpg";
-import resumePDF from "../assets/Resume_PaiavullaNikhil.pdf";
+// import resumePDF from "../assets/Resume_PaiavullaNikhil.pdf";
+import resumePDF from "../assets/Resume.pdf";
 
 const About = () => {
   const { scrollYProgress } = useScroll();
