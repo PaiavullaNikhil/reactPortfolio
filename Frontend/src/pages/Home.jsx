@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import About from "./About";
 import Contact from "./Contact";
 import Project from "./Project";
+import Experience from "./Experience";
 
 const Home = () => {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
@@ -134,6 +135,7 @@ const Home = () => {
 
       <About />
       <Project />
+      <Experience />
       <Contact />
     </>
   );
