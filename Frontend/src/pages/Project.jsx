@@ -8,6 +8,7 @@ import project3 from "../assets/Images/Project3.png";
 import project4 from "../assets/Images/Project4.png";
 import project5 from "../assets/Images/Project5.png";
 import project6 from "../assets/Images/Project6.png";
+import project7 from "../assets/Images/Project7.png";
 import ProjectCard from "../components/ProjectCard";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,6 +68,17 @@ const Project = () => {
 
   // Sample projects data
   const projects = [
+    {
+      id: 0,
+      title: "PlanGrid: Material Forecasting (Powergrid)",
+      description:
+      "Smart dashboard for forecasting materials and managing powergrid project operations efficiently.",
+      tags: ["React", "Tailwind", "Framer Motion", "Flask", "Python", "MongoDB"],
+      liveLink: "https://material-forecast-website.onrender.com/",
+      githubLink: "https://github.com/arnavsrao09/Material_Forecast_Website.git",
+      image: project7,
+    },
+    
     {
       id: 1,
       title:
@@ -202,95 +214,30 @@ const Project = () => {
       </div>
 
       <div className="container mx-auto px-6">
-        {/* Header Section */}
-        <div className="py-32 flex flex-col lg:flex-row items-center">
-          {/* Text Section */}
-          <div className="w-full lg:w-1/2">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="w-full lg:pr-12"
-            >
-              <motion.h1
-                initial="rest"
-                whileHover="hover"
-                variants={dopplerEffect}
-                className="text-6xl md:text-8xl font-bold tracking-tighter text-white"
-              >
-                Project's by{" "}
-                <span className="text-red-500 font-[HelloSwashes]">Me</span>
-              </motion.h1>
-
-              <motion.p className="text-2xl md:text-3xl lg:text-4xl text-white mb-8 leading-relaxed">
-                A showcase of my{" "}
-                <span className="text-red-500 font-bold">creative</span> work
-                and technical{" "}
-                <span className="text-red-500 font-bold">expertise</span>.
-              </motion.p>
-            </motion.div>
-          </div>
-
-          {/* Decorative Image or Section */}
-          <div className="w-full lg:w-1/2 flex justify-center items-center mb-12 lg:mb-0 relative z-20">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              style={{ rotate }}
-              className="relative w-72 h-72 sm:w-80 sm:h-80 rounded-2xl overflow-hidden shadow-2xl transform"
-            >
-              <div className="absolute inset-0 bg-gradient-to-tr from-red-500/20 to-blue-600/20 z-10"></div>
-              <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                animate={{
-                  background: [
-                    "linear-gradient(0deg, rgba(220,38,38,0.2) 0%, rgba(37,99,235,0.1) 100%)",
-                    "linear-gradient(180deg, rgba(220,38,38,0.2) 0%, rgba(37,99,235,0.1) 100%)",
-                  ],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "linear",
-                  repeatType: "reverse",
-                }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-32 w-32 text-red-500 opacity-80"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1}
-                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                  />
-                </svg>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Projects Section */}
+        {/* Projects Section with fixed header inside */}
         <section ref={containerRef} className="py-20 relative">
           <motion.h2
-            className="text-4xl md:text-5xl text-red-500 font-bold mb-30 text-center"
+            className="text-6xl md:text-8xl font-bold tracking-tighter text-white mb-0 text-left"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ amount: 0.1 }}
           >
-            Featured Work
+            Project's by <span className="text-red-500 font-[HelloSwashes]">Me</span>
           </motion.h2>
-
+          <motion.p
+            className="text-xl md:text-2xl text-zinc-400 mt-4 mb-16 leading-relaxed text-left"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ amount: 0.1 }}
+          >
+            A showcase of my creative work and technical expertise.
+          </motion.p>
           {/* Row that moves horizontally */}
           <div
             ref={projectsRef}
-            className="flex flex-row items-stretch gap-8 md:gap-12 lg:gap-50 xl:gap-60  will-change-transform"
+            className="flex flex-row items-stretch gap-8 md:gap-12 lg:gap-50 xl:gap-60 will-change-transform"
           >
             {projects.map((project, index) => (
               <motion.div

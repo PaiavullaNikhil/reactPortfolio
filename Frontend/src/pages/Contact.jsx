@@ -138,7 +138,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-left mb-16"
         >
           <motion.h1 
             className="text-6xl md:text-8xl font-bold tracking-tighter text-white"
@@ -153,7 +153,7 @@ const Contact = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 0.7, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="text-xl md:text-2xl text-zinc-400 mt-4 leading-relaxed"
+            className="text-xl md:text-2xl text-zinc-400 mt-4 leading-relaxed text-left"
           >
             Have a project in mind? Let's bring your ideas to life.
           </motion.p>
@@ -312,22 +312,7 @@ const Contact = () => {
                 ))}
               </div>              
               
-              <div className="mt-6 lg:mt-8">
-                <motion.h3 
-                  className="text-xl md:text-2xl font-bold text-white mb-4"
-                  variants={dopplerEffect}
-                  whileHover="hover"
-                  onMouseEnter={textEnter}
-                  onMouseLeave={textLeave}
-                >
-                  Business Hours
-                </motion.h3>
-                <div className="space-y-2 text-sm md:text-base lg:text-lg text-zinc-400">
-                  <p>Monday - Friday: 9am - 6pm</p>
-                  <p>Saturday: By appointment</p>
-                  <p>Sunday: Closed</p>
-                </div>
-              </div>
+
             </div>
           </motion.div>
         </div>

@@ -41,14 +41,39 @@ const About = () => {
   const textLeave = () => setCursorVariant("default");
 
   const skills = [
+    // Languages
+    "JavaScript",
+    "Python",
+    "Java",
+    // Web Technologies
     "HTML",
     "CSS",
-    "JS",
-    "React",
+    // Frameworks & Libraries
+    "React.js",
     "Node.js",
-    "Express",
-    "Mongodb",
+    "Express.js",
+    "Flask",
+    "Tailwind CSS",
+    "Bootstrap",
+    "GraphQL",
+    // Databases
+    "MongoDB",
+    "MySQL",
+    "PostgreSQL",
+    // Machine Learning
+    "NumPy",
+    "Pandas",
+    "Scikit-learn",
+    "Matplotlib",
+    "TensorFlow",
+    // Tools
     "Git",
+    "GitHub",
+    "Postman",
+    // Core Skills
+    "MERN Stack Development",
+    "RESTful APIs",
+    "Model Training",
   ];
 
   const socialLinks = [
@@ -161,7 +186,7 @@ const About = () => {
 
   return (
     <>
-      <div id="about" className="relative w-full flex justify-center min-h-screen bg-zinc-900 overflow-x-hidden">
+      <div id="about" className="relative w-full min-h-screen bg-zinc-900 overflow-x-hidden">
         <div className="absolute w-full max-w-6xl flex justify-center h-full">
           <div
             className="absolute w-96 h-96 bg-blue-600/20 rounded-full filter blur-3xl"
@@ -169,9 +194,9 @@ const About = () => {
           />
         </div>
 
-        <div className="container mx-auto px-6 py-16 md:py-24 flex flex-col lg:flex-row lg:min-h-[80vh] items-center">
+        <div className="container mx-auto px-6 py-2 md:py-5 flex flex-col lg:flex-row lg:min-h-[80vh] items-center">
           {/* Text Section */}
-          <div className="w-full lg:w-1/2 order-2 lg:order-1 mt-12 lg:mt-0">
+          <div className="w-full lg:w-3/5 order-2 lg:order-1 mt-12 lg:mt-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -196,9 +221,9 @@ const About = () => {
                 variants={dopplerEffect}
                 whileHover="hover"
               >
-                I am Nikhil, a passionate web developer crafting seamless,{" "}
-                <span className="text-red-500 font-bold">interactive</span>, and
-                visually striking experiences for the web.
+                I am Nikhil, a passionate web developer crafting seamless,
+                <span className="text-red-500 font-bold"> interactive</span>, and visually striking experiences for the web. I care about clarity,
+                performance, and the small details that make interfaces feel fast and polished.
               </motion.p>
 
               <motion.p
@@ -208,9 +233,8 @@ const About = () => {
                 variants={dopplerEffect}
                 whileHover="hover"
               >
-                I build clean user interfaces and solid backend systems. My
-                experience in web development helps me turn ideas into smooth,
-                working projects.
+                I build clean user interfaces and solid backend systems. Currently exploring ML/AI to add practical, data‑driven features. Recent work:
+                World Bank–funded GKVK dashboards and a voice‑enabled chatbot.
               </motion.p>
 
               {/* Social Media Icons */}
@@ -218,7 +242,7 @@ const About = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="flex flex-wrap gap-5 mb-10 relative z-20"
+                className="flex flex-wrap gap-5 mb-5 relative z-20"
               >
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -242,63 +266,7 @@ const About = () => {
                 ))}
               </motion.div>
 
-              <div className="flex flex-wrap gap-6 mt-10 relative z-20">
-                {/* Skills Dropdown - Fixed with useState instead of CSS hover */}
-                <div className="relative" ref={skillsRef}>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setShowSkills(!showSkills)}
-                    className="bg-white/10 backdrop-blur-sm border border-white/20 px-8 py-4 text-xl text-white rounded-full transition-all duration-300 hover:bg-white/20 shadow-lg"
-                    onMouseEnter={textEnter}
-                    onMouseLeave={textLeave}
-                  >
-                    Skills & Expertise
-                  </motion.button>
-
-                  {showSkills && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute left-0 top-full mt-2 bg-white/95 backdrop-blur-sm text-black p-6 rounded-lg shadow-xl z-30 w-80 border border-red-500/20"
-                    >
-                      <h3 className="mb-4 text-2xl text-red-600 border-b border-red-500/30 pb-2 font-medium">
-                        My Skills
-                      </h3>
-                      <motion.div
-                        initial="hidden"
-                        animate="visible"
-                        variants={{
-                          hidden: {},
-                          visible: {
-                            transition: {
-                              staggerChildren: 0.1,
-                            },
-                          },
-                        }}
-                        className="grid grid-cols-2 gap-4"
-                      >
-                        {skills.map((skill, index) => (
-                          <motion.div
-                            key={index}
-                            variants={{
-                              hidden: { opacity: 0, y: 10 },
-                              visible: { opacity: 1, y: 0 },
-                            }}
-                            className="bg-gradient-to-r from-slate-50 to-slate-100 px-4 py-3 rounded-lg text-lg flex items-center hover:shadow-md transition-all duration-200 hover:from-white hover:to-white"
-                          >
-                            <div className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-600 rounded-full mr-2"></div>
-                            <span className="inline-block font-medium">
-                              {skill}
-                            </span>
-                          </motion.div>
-                        ))}
-                      </motion.div>
-                    </motion.div>
-                  )}
-                </div>
-
+              <div className="flex flex-wrap gap-6 mt-2 relative z-20 w-full">
                 {/* Resume Preview Button */}
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -311,11 +279,13 @@ const About = () => {
                   Preview Resume
                 </motion.button>
               </div>
+
+              
             </motion.div>
           </div>
 
           {/* Image Section */}
-          <div className="w-full lg:w-1/2 order-1 lg:order-2 flex justify-center items-center mb-12 lg:mb-0 relative">
+          <div className="w-full lg:w-2/5 order-1 lg:order-2 flex justify-center items-center mb-12 lg:mb-0 relative">
             <motion.div
               initial={{ opacity: 0, scale: 0.9, rotate: -8 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -344,7 +314,41 @@ const About = () => {
               </div>
             </motion.div>
           </div>
+      </div>
+
+      {/* Full-width Skills Marquee (edge-to-edge, with subtle background repeat) */}
+      <div className="relative w-full mt-2">
+        <div className="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
+          <motion.div
+            className="flex items-center gap-6 w-max"
+            animate={{ x: ["0%", "-25%"] }}
+            transition={{ duration: 140, ease: "linear", repeat: Infinity }}
+          >
+            {[0,1,2,3].flatMap((g) => skills.map((skill, i) => (
+              <div key={`bg-${g}-${i}`} className="whitespace-nowrap text-white/80 px-4 py-2 text-lg">
+                {skill}
+              </div>
+            )))}
+          </motion.div>
         </div>
+        <div className="relative overflow-hidden w-full py-2">
+          <motion.div
+            className="flex items-center gap-3 w-max"
+            animate={{ x: ["0%", "-25%"] }}
+            transition={{ duration: 140, ease: "linear", repeat: Infinity }}
+          >
+            {[0,1,2,3].flatMap((g) => skills.map((skill, i) => (
+              <div
+                key={`fg-${g}-${i}`}
+                className="whitespace-nowrap bg-white/90 text-zinc-900 px-4 py-2 rounded-lg text-base flex items-center shadow-sm"
+              >
+                <div className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-600 rounded-full mr-2" />
+                {skill}
+              </div>
+            )))}
+          </motion.div>
+        </div>
+      </div>
       </div>
 
       {/* Resume Modal - Added higher z-index */}
