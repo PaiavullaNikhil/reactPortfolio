@@ -32,18 +32,14 @@ const ProjectCard = ({ project, index, hoveredProject, setHoveredProject, textEn
       variants={cardVariants}
       onMouseEnter={() => setHoveredProject(project.id)}
       onMouseLeave={() => setHoveredProject(null)}
-className={`relative bg-slate-800/70 backdrop-blur-sm h-full 
-    min-w-[280px] sm:min-w-[340px] md:min-w-[380px] lg:min-w-[580px] 
-    rounded-xl overflow-hidden border
-    ${hoveredProject === project.id 
-      ? "border-red-500/50 shadow-xl shadow-red-500/10 scale-105" 
-      : "border-slate-700 scale-100"}  ${
-        hoveredProject === project.id 
-          ? "border-red-500/50 shadow-xl shadow-red-500/10" 
-          : "border-slate-700"
-      } transition-all duration-300 transform ${
-        hoveredProject === project.id ? "scale-105" : "scale-100"
-      }`}
+      className={`relative bg-slate-800/70 backdrop-blur-sm h-full 
+        min-w-[280px] sm:min-w-[340px] md:min-w-[380px] lg:min-w-[580px] 
+        rounded-xl overflow-hidden border
+        ${hoveredProject === project.id 
+          ? "border-red-500/50 shadow-xl shadow-red-500/10 scale-105" 
+          : "border-slate-700 scale-100"} transition-all duration-300 transform ${
+          hoveredProject === project.id ? "scale-105" : "scale-100"
+        }`}
     >
       {hoveredProject === project.id && (
         <motion.div 
@@ -59,7 +55,7 @@ className={`relative bg-slate-800/70 backdrop-blur-sm h-full
         </motion.div>
       )}
 
-      <div className="relative h-68 overflow-hidden">
+      <div className="relative h-40 sm:h-68 overflow-hidden">
         <motion.img
           src={project.image}
           alt={project.title}
@@ -68,9 +64,9 @@ className={`relative bg-slate-800/70 backdrop-blur-sm h-full
           transition={{ duration: 0.7 }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-70"></div>
-        <div className="absolute bottom-0 left-0 p-4">
+        <div className="absolute bottom-0 left-0 p-3 sm:p-4">
           <motion.h3 
-            className="text-xl font-bold text-white"
+            className="text-base sm:text-xl font-bold text-white"
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
           >
@@ -80,9 +76,9 @@ className={`relative bg-slate-800/70 backdrop-blur-sm h-full
       </div>
 
       {/* Project Content */}
-      <div className="p-5">
+      <div className="p-3 sm:p-5 flex flex-col">
         <motion.p 
-          className="text-gray-300 mb-4"
+          className="text-gray-300 mb-2 sm:mb-4 text-sm sm:text-base line-clamp-3 sm:line-clamp-2 overflow-hidden"
           onMouseEnter={textEnter}
           onMouseLeave={textLeave}
         >
@@ -90,7 +86,7 @@ className={`relative bg-slate-800/70 backdrop-blur-sm h-full
         </motion.p>
         
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-2 sm:mb-4 max-h-16 sm:max-h-12 overflow-hidden">
           {project.tags.map((tag, i) => (
             <motion.span
               key={i}
@@ -108,31 +104,31 @@ className={`relative bg-slate-800/70 backdrop-blur-sm h-full
         </div>
         
         {/* Action Buttons */}
-        <div className="flex space-x-3 mt-6">
+        <div className="flex space-x-2 sm:space-x-3 mt-4 sm:mt-6">
           <motion.a 
             href={project.liveLink} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-300"
+            className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 sm:py-3 px-3 sm:px-4 rounded-lg flex items-center justify-center transition-all duration-300 text-sm sm:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
           >
-            <span className="mr-2">Live Demo</span>
+            <span className="mr-1 sm:mr-2">Live Demo</span>
             <LiveIcon />
           </motion.a>
           <motion.a 
             href={project.githubLink} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex-1 bg-slate-700 hover:bg-slate-800 text-white py-3 px-4 rounded-lg flex items-center justify-center transition-all duration-300"
+            className="flex-1 bg-slate-700 hover:bg-slate-800 text-white py-2 sm:py-3 px-3 sm:px-4 rounded-lg flex items-center justify-center transition-all duration-300 text-sm sm:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
           >
-            <span className="mr-2">GitHub</span>
+            <span className="mr-1 sm:mr-2">GitHub</span>
             <GitHubIcon />
           </motion.a>
         </div>

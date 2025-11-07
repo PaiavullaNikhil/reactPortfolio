@@ -32,7 +32,7 @@ const Project = () => {
       return Math.max(0, max);
     };
 
-    // Reset X on refresh to prevent “vanish” from stale transforms
+    // Reset X on refresh to prevent "vanish" from stale transforms
     const tween = gsap.to(row, {
       x: () => -getMaxX(),
       ease: "none",
@@ -73,7 +73,7 @@ const Project = () => {
       title: "PlanGrid: Material Forecasting (Powergrid)",
       description:
       "Smart dashboard for forecasting materials and managing powergrid project operations efficiently.",
-      tags: ["React", "Tailwind", "Framer Motion", "Flask", "Python", "MongoDB"],
+      tags: ["React", "Framer Motion", "Flask", "Python", "MongoDB"],
       liveLink: "https://material-forecast-website.onrender.com/",
       githubLink: "https://github.com/arnavsrao09/Material_Forecast_Website.git",
       image: project7,
@@ -105,7 +105,7 @@ const Project = () => {
       id: 3,
       title: "ML Heart Stroke Predictor",
       description:
-        "Heart disease predictor using KNN model with Flask and React frontend.",
+        "An Interactive Heart disease predictor using KNN model with Flask and React frontend.",
       tags: ["ML", "React", "Flask", "KNN Model"],
       liveLink: "https://ml-heart-disease-predictor-xga7.onrender.com/",
       githubLink: "https://github.com/Rishben/ML-heart_disease_predictor",
@@ -234,15 +234,15 @@ const Project = () => {
           >
             A showcase of my creative work and technical expertise.
           </motion.p>
-          {/* Row that moves horizontally */}
+          {/* Row that moves horizontally on desktop, stacks vertically on mobile */}
           <div
             ref={projectsRef}
-            className="flex flex-row items-stretch gap-8 md:gap-12 lg:gap-50 xl:gap-60 will-change-transform"
+            className="flex flex-col md:flex-row items-stretch gap-6 md:gap-8 lg:gap-12 xl:gap-50 will-change-transform"
           >
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                className="project-card flex-shrink-0 w-[420px]"
+                className="project-card flex-shrink-0 w-full md:w-[420px]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
