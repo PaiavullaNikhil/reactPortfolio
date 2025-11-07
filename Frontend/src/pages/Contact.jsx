@@ -27,44 +27,36 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setFormStatus(prev => ({ ...prev, isSubmitting: true }));  
-    try {
-      const response = await fetch('https://reactportfolio-7y6m.onrender.com/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-      
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.message || 'Something went wrong. Please try again later.');
-      }
-      
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setFormStatus({
-        isSubmitting: false,
-        isSubmitted: true,
-        error: null
-      });
-      
-      // Reset form status after 5 seconds
-      setTimeout(() => {
-        setFormStatus(prev => ({ ...prev, isSubmitted: false }));
-      }, 5000);
-      
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setFormStatus({
-        isSubmitting: false,
-        isSubmitted: false,
-        error: error.message
-      });
-    }
+    
+    // Create mailto link with pre-filled email content
+    const recipient = "nikhil.20th65@gmail.com";
+    const subject = encodeURIComponent(formData.subject || "Contact from Portfolio");
+    const body = encodeURIComponent(
+      `Hello Nikhil,\n\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n\n` +
+      `Message:\n${formData.message}`
+    );
+    
+    const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Reset form
+    setFormData({ name: "", email: "", subject: "", message: "" });
+    setFormStatus({
+      isSubmitting: false,
+      isSubmitted: true,
+      error: null
+    });
+    
+    // Reset form status after 5 seconds
+    setTimeout(() => {
+      setFormStatus(prev => ({ ...prev, isSubmitted: false }));
+    }, 5000);
   };
 
   const inputClasses = "w-full bg-zinc-800/50 backdrop-blur-sm border border-zinc-700 text-white placeholder-zinc-500 rounded-xl px-4 py-3 font-bold text-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 transition-all duration-300";
@@ -72,7 +64,8 @@ const Contact = () => {
   const socialContacts = [
     {
       name: "Email",
-      value: "nikhil.20th65@example.com",
+      value: "nikhil.20th65@gmail.com",
+      url: "mailto:nikhil.20th65@gmail.com",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
           <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/>
@@ -100,6 +93,7 @@ const Contact = () => {
     {
       name: "LinkedIn",
       value: "www.linkedin.com/in/paiavulla-nikhil",
+      url: "https://www.linkedin.com/in/paiavulla-nikhil",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
           <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
@@ -185,10 +179,10 @@ const Contact = () => {
                   className="bg-zinc-800/50 border border-zinc-700 rounded-xl p-6 text-center"
                 >
                   <svg className="w-16 h-16 mx-auto mb-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-                  <p className="text-lg text-zinc-400">Thanks for reaching out. I'll get back to you soon.</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">Email Client Opened!</h3>
+                  <p className="text-lg text-zinc-400">Please complete sending the email from your email client.</p>
                 </motion.div>
               ) : (
                 <form ref={formRef} onSubmit={handleSubmit}>
@@ -294,20 +288,40 @@ const Contact = () => {
               <div className="space-y-6 mb-8 lg:mb-12">
                 {socialContacts.map((contact, index) => (
                   <motion.div 
-                    key={index} 
+                    key={index}
                     className="flex items-start space-x-4 overflow-hidden"
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
-                    <div className="bg-zinc-800 p-3 rounded-lg flex-shrink-0">
-                      <div className="text-red-500">{contact.icon}</div>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-lg md:text-xl font-bold text-white mb-1">{contact.name}</h3>
-                      <p className="text-sm md:text-base lg:text-lg text-zinc-400 break-words break-all">
-                        {contact.value}
-                      </p>
-                    </div>
+                    {contact.url ? (
+                      <a
+                        href={contact.url}
+                        className="flex items-start space-x-4 w-full cursor-pointer"
+                        {...(contact.url.startsWith('mailto:') ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+                      >
+                        <div className="bg-zinc-800 p-3 rounded-lg flex-shrink-0">
+                          <div className="text-red-500">{contact.icon}</div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-lg md:text-xl font-bold text-white mb-1">{contact.name}</h3>
+                          <p className="text-sm md:text-base lg:text-lg text-zinc-400 break-words break-all">
+                            {contact.value}
+                          </p>
+                        </div>
+                      </a>
+                    ) : (
+                      <>
+                        <div className="bg-zinc-800 p-3 rounded-lg flex-shrink-0">
+                          <div className="text-red-500">{contact.icon}</div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-lg md:text-xl font-bold text-white mb-1">{contact.name}</h3>
+                          <p className="text-sm md:text-base lg:text-lg text-zinc-400 break-words break-all">
+                            {contact.value}
+                          </p>
+                        </div>
+                      </>
+                    )}
                   </motion.div>
                 ))}
               </div>              
