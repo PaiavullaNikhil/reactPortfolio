@@ -28,8 +28,8 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="relative w-full bg-zinc-900 py-20">
-      <div className="absolute w-full max-w-8xl flex justify-center h-full">
+    <section id="experience" className="relative w-full bg-zinc-900 py-20 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute w-96 h-96 bg-red-600/20 rounded-full filter blur-3xl" style={{ top: 40, left: 20 }} />
       </div>
 

@@ -77,16 +77,17 @@ const Home = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="w-full min-h-screen overflow-x-hidden flex flex-col justify-center items-center bg-zinc-900 text-white"
+        className="relative w-full min-h-screen overflow-hidden flex flex-col justify-center items-center bg-zinc-900 text-white"
       >
+        {/* Background Glow Effect - Full width */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 -left-48 w-96 h-96 bg-red-600/20 rounded-full filter blur-3xl" />
+          <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-blue-600/20 rounded-full filter blur-3xl" />
+        </div>
+
         <Navbar />
 
         <div className="relative w-full max-w-6xl h-screen flex flex-col justify-center px-6 sm:px-12 lg:px-24 ">
-          {/* Background Glow Effect */}
-          <div className="absolute w-full h-full">
-            <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-red-600/20 rounded-full filter blur-3xl" />
-            <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-blue-600/20 rounded-full filter blur-3xl" />
-          </div>
 
           {/* Creative */}
           <motion.h1

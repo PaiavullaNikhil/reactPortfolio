@@ -116,10 +116,10 @@ const Contact = () => {
   return (
     <div id="contact" className="relative w-full max-w-8xl min-h-screen bg-zinc-900 overflow-x-hidden">  
       {/* Background Glow Effect */}
-      <div className="absolute w-full max-w-6xl flex justify-center h-full">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div
             className="absolute w-96 h-96 bg-red-600/5 rounded-full filter blur-3xl"
-            style={{ top: 60, right: -700}}
+            style={{ top: 60, right: -100 }}
           /> 
           <div
             className="absolute w-96 h-96 bg-blue-600/20 rounded-full filter blur-3xl"

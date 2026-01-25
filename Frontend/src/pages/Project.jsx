@@ -165,14 +165,14 @@ const Project = () => {
       className="relative w-full bg-zinc-900 text-white overflow-hidden"
     >
       {/* Simplified Background Glow Effect */}
-      <div className="absolute w-full max-w-6xl flex justify-center h-full">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           className="absolute w-96 h-96 bg-red-600/20 rounded-full filter blur-3xl"
-          style={{ top: 100, right: -300 }}
+          style={{ top: 100, right: -100 }}
         />
         <div
           className="absolute w-96 h-96 bg-blue-600/20 rounded-full filter blur-3xl"
-          style={{ top: 120, right: -500 }}
+          style={{ top: 120, right: -150 }}
         />
       </div>
 
