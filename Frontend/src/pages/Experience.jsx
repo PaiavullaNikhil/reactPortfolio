@@ -17,7 +17,7 @@ const Experience = () => {
     {
       company: "GKVK (World Bank-Funded)",
       location: "Bangalore, India",
-      role: "Frontend Developer Intern",
+      role: "Developer Intern",
       dates: "Aug 2024 - Present",
       bullets: [
         "Implemented graphical visualization of Crop Analysis and Behavioral Analysis data, improving data interpretation efficiency.",
@@ -25,6 +25,29 @@ const Experience = () => {
         "Developing a voice-enabled chatbot for farmers to query soil nutrient percentages (N, P, K) and receive actionable guidance.",
       ],
     },
+    {
+      company: "Wisdomind Business Advisory LLP",
+      location: "Bangalore, India",
+      role: "Software Developer Intern",
+      dates: "Feb 2026 - Present",
+      bullets: [
+        "Collaborated closely with a Chartered Accountancy (CA) firm to understand business requirements, service offerings, and client workflows.",
+        "Redesigned the corporate website UI/UX to modernize the look, streamline navigation, and increase user engagement and conversion.",
+        "Handled on-page SEO, content structure, and performance optimizations to improve search visibility and organic traffic.",
+      ],
+    },
+    // {
+    //   company: "Freelance",
+    //   location: "Remote / Global",
+    //   role: "Freelance Full-Stack Developer",
+    //   dates: "Freelance - Ongoing",
+    //   bullets: [
+    //     "Designed and built responsive websites for local and global businesses, including a restaurant brand (NELO Shawarma), while managing one-to-one client communication.",
+    //     "Developed a Blinkit-like on-demand delivery platform (Bromills), including a cross-platform mobile app nearing deployment on Play Store and App Store, and a redesigned marketing website.",
+    //     "Currently working with Abu Dhabi-based Al Shamra Group to modernize their digital presence across multiple product lines such as rubber, polyurethane, mechanical components, carbon brushes, and fabricated mesh.",
+    //     "Handled end-to-end delivery across UX, front-end and back-end implementation, performance, and SEO for small to mid-sized businesses.",
+    //   ],
+    // },
   ];
 
   return (

@@ -27,36 +27,65 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Create mailto link with pre-filled email content
-    const recipient = "nikhil.20th65@gmail.com";
-    const subject = encodeURIComponent(formData.subject || "Contact from Portfolio");
-    const body = encodeURIComponent(
-      `Hello Nikhil,\n\n` +
-      `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n\n` +
-      `Message:\n${formData.message}`
-    );
-    
-    const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    // Reset form
-    setFormData({ name: "", email: "", subject: "", message: "" });
+
     setFormStatus({
-      isSubmitting: false,
-      isSubmitted: true,
-      error: null
+      isSubmitting: true,
+      isSubmitted: false,
+      error: null,
     });
-    
-    // Reset form status after 5 seconds
-    setTimeout(() => {
-      setFormStatus(prev => ({ ...prev, isSubmitted: false }));
-    }, 5000);
+
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+    if (!accessKey) {
+      setFormStatus({
+        isSubmitting: false,
+        isSubmitted: false,
+        error: "Contact form is not configured. Please set VITE_WEB3FORMS_ACCESS_KEY.",
+      });
+      return;
+    }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || data.success !== true) {
+        throw new Error(data.message || "Something went wrong. Please try again.");
+      }
+
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormStatus({
+        isSubmitting: false,
+        isSubmitted: true,
+        error: null,
+      });
+
+      setTimeout(() => {
+        setFormStatus((prev) => ({ ...prev, isSubmitted: false }));
+      }, 5000);
+    } catch (error) {
+      setFormStatus({
+        isSubmitting: false,
+        isSubmitted: false,
+        error: error.message || "Failed to send message. Please try again.",
+      });
+    }
   };
 
   const inputClasses = "w-full bg-zinc-800/50 backdrop-blur-sm border border-zinc-700 text-white placeholder-zinc-500 rounded-xl px-4 py-3 font-bold text-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 transition-all duration-300";
@@ -181,8 +210,8 @@ const Contact = () => {
                   <svg className="w-16 h-16 mx-auto mb-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <h3 className="text-2xl font-bold text-white mb-2">Email Client Opened!</h3>
-                  <p className="text-lg text-zinc-400">Please complete sending the email from your email client.</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
+                  <p className="text-lg text-zinc-400">Thank you for reaching out. I&apos;ll get back to you soon.</p>
                 </motion.div>
               ) : (
                 <form ref={formRef} onSubmit={handleSubmit}>
