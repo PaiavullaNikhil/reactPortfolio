@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import About from "./About";
@@ -11,6 +11,16 @@ const Home = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorVariant, setCursorVariant] = useState("default");
   const homeRef = useRef(null);
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: homeRef,
+    offset: ["start start", "end start"],
+  });
+  const heroOpacity = useTransform(
+    heroProgress,
+    [0, 0.4, 0.9, 1],
+    [1, 1, 0.3, 0]
+  );
+  const heroY = useTransform(heroProgress, [0, 1], [0, -40]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -50,17 +60,6 @@ const Home = () => {
   const textEnter = () => setCursorVariant("text");
   const textLeave = () => setCursorVariant("default");
 
-  const dopplerEffect = {
-    rest: {
-      scale: 1,
-      transition: { duration: 0.5, type: "tween", ease: "easeInOut" },
-    },
-    hover: {
-      scale: 1.1,
-      transition: { duration: 0.5, type: "tween", ease: "easeInOut" },
-    },
-  };
-
   return (
     <>
       {/* Custom Cursor */}
@@ -87,51 +86,37 @@ const Home = () => {
 
         <Navbar />
 
-        <div className="relative w-full max-w-6xl h-screen flex flex-col justify-center px-6 sm:px-12 lg:px-24 ">
-
-          {/* Creative */}
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="text-6xl md:text-8xl lg:text-9xl xl:text-10xl font-bold tracking-tighter"
+        <motion.div
+          className="relative w-full max-w-6xl h-screen flex flex-col justify-center px-6 sm:px-12 lg:px-24 "
+          style={{ opacity: heroOpacity, y: heroY }}
+        >
+          {/* Hero Heading Line 1 */}
+          <h1
+            className="text-6xl md:text-8xl lg:text-9xl xl:text-10xl font-bold tracking-tighter transition-colors duration-300 hover:text-zinc-100"
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
-            variants={dopplerEffect}
-            whileHover="hover"
           >
-            Creative
-          </motion.h1>
+            Your friendly
+          </h1>
 
-          {/* Web Developer */}
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="text-6xl md:text-8xl lg:text-9xl xl:text-10xl font-bold tracking-tighter mt-4"
+          {/* Hero Heading Line 2 */}
+          <h1
+            className="text-6xl md:text-8xl lg:text-9xl xl:text-10xl font-bold tracking-tighter mt-4 transition-colors duration-300 hover:text-zinc-100"
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
-            variants={dopplerEffect}
-            whileHover="hover"
-          // initial="rest"
           >
-            <span className="inline-block text-red-500 font-[HelloSwashes] mr-2">
-              Web
+            <span className="inline-block mr-2">neighborhood</span>
+            <span className="inline-block text-red-500 font-[HelloSwashes]">
+              Developer
             </span>
-            <span className="inline-block">Developer</span>
-          </motion.h1>
+          </h1>
 
           {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 0.7, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            className="mt-8 text-lg md:text-xl text-zinc-400 max-w-xl"
-          >
+          <p className="mt-8 text-lg md:text-xl text-zinc-400 max-w-xl">
             Crafting digital experiences that blend innovation with
             functionality
-          </motion.p>
-        </div>
+          </p>
+        </motion.div>
       </motion.div>
 
       <About />

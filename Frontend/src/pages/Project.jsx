@@ -46,7 +46,6 @@ const Project = () => {
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onRefresh: () => gsap.set(row, { x: 0 }),
-        // markers: true, // uncomment to debug
       },
     });
 
@@ -218,19 +217,20 @@ const Project = () => {
         <section ref={containerRef} className="py-20 relative">
           <motion.h2
             className="text-6xl md:text-8xl font-bold tracking-tighter text-white mb-0 text-left"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ amount: 0.3 }}
           >
-            Project's by <span className="text-red-500 font-[HelloSwashes]">Me</span>
+            Project's by{" "}
+            <span className="text-red-500 font-[HelloSwashes]">Me</span>
           </motion.h2>
           <motion.p
             className="text-xl md:text-2xl text-zinc-400 mt-4 mb-16 leading-relaxed text-left"
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            viewport={{ amount: 0.3 }}
           >
             A showcase of my creative work and technical expertise.
           </motion.p>

@@ -58,9 +58,10 @@ const Experience = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ amount: 0.3 }}
           className="text-6xl md:text-8xl font-bold tracking-tighter mb-0"
         >
           <span className="text-white">Experience</span>{" "}
@@ -68,10 +69,10 @@ const Experience = () => {
         </motion.h2>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          viewport={{ amount: 0.3 }}
           className="text-xl md:text-2xl text-zinc-400 mt-4 mb-16 leading-relaxed"
         >
           A snapshot of my journey — roles, responsibilities, and the impact I’ve made.
@@ -82,7 +83,14 @@ const Experience = () => {
           <div className="absolute left-3 md:left-4 top-0 bottom-0 w-px bg-white/10" />
           <div className="space-y-10">
             {experiences.map((exp, idx) => (
-              <div key={idx} className="relative pl-10 md:pl-12">
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                viewport={{ amount: 0.2 }}
+                className="relative pl-10 md:pl-12"
+              >
                 <div className="absolute left-0 top-1 w-6 h-6 md:w-7 md:h-7 rounded-full bg-red-600 shadow-[0_0_20px_rgba(220,38,38,0.5)]" />
 
                 <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
@@ -94,7 +102,9 @@ const Experience = () => {
                     >
                       {exp.company}, {exp.location}
                     </motion.h3>
-                    <p className="text-zinc-400 text-base md:text-lg">{exp.role} • {exp.dates}</p>
+                    <p className="text-zinc-400 text-base md:text-lg">
+                      {exp.role} • {exp.dates}
+                    </p>
                   </div>
 
                   <ul className="list-disc list-inside space-y-3 text-zinc-300 text-lg md:text-xl">
@@ -103,7 +113,7 @@ const Experience = () => {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

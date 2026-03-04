@@ -131,17 +131,6 @@ const Contact = () => {
     }
   ];
 
-  const dopplerEffect = {
-    rest: {
-      scale: 1,
-      transition: { duration: 0.5, type: "tween", ease: "easeInOut" }
-    },
-    hover: {
-      scale: 1.05,
-      transition: { duration: 0.5, type: "tween", ease: "easeInOut" }
-    }
-  };
-
   return (
     <div id="contact" className="relative w-full max-w-8xl min-h-screen bg-zinc-900 overflow-x-hidden">  
       {/* Background Glow Effect */}
@@ -157,44 +146,42 @@ const Contact = () => {
         </div>
 
       <div className="container mx-auto px-6 pt-16 pb-24">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-left mb-16"
-        >
-          <motion.h1 
-            className="text-6xl md:text-8xl font-bold tracking-tighter text-white"
-            variants={dopplerEffect}
-            whileHover="hover"
+        <div className="text-left mb-16">
+          <motion.h1
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.1 }}
+            viewport={{ amount: 0.4 }}
+            className="text-6xl md:text-8xl font-bold tracking-tighter text-white transition-colors duration-300 hover:text-zinc-100"
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
           >
-            Get in <span className="text-red-500 font-[HelloSwashes]">Touch</span>
+            Get in{" "}
+            <span className="text-red-500 font-[HelloSwashes]">Touch</span>
           </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 0.7, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 0.7, y: 0 }}
+            transition={{ duration: 1, delay: 0.25 }}
+            viewport={{ amount: 0.4 }}
             className="text-xl md:text-2xl text-zinc-400 mt-4 leading-relaxed text-left"
           >
             Have a project in mind? Let's bring your ideas to life.
           </motion.p>
-        </motion.div>
+        </div>
         
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
           {/* Contact Form Section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ amount: 0.3 }}
             className="w-full lg:w-3/5"
           >
             <div className="bg-zinc-800/30 backdrop-blur-sm border border-zinc-700 rounded-2xl p-6 md:p-8 shadow-xl">
               <motion.h2 
-                className="text-3xl md:text-4xl font-bold text-white mb-6"
-                variants={dopplerEffect}
-                whileHover="hover"
+                className="text-3xl md:text-4xl font-bold text-white mb-6 transition-colors duration-300 hover:text-zinc-100"
                 onMouseEnter={textEnter}
                 onMouseLeave={textLeave}
               >
@@ -299,15 +286,14 @@ const Contact = () => {
           {/* Contact Info Section */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ amount: 0.3 }}
             className="w-full lg:w-2/5"
           >
             <div className="bg-zinc-800/30 backdrop-blur-sm border border-zinc-700 rounded-2xl p-6 md:p-8 shadow-xl h-full overflow-hidden">
               <motion.h2 
-                className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6"
-                variants={dopplerEffect}
-                whileHover="hover"
+                className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 transition-colors duration-300 hover:text-zinc-100"
                 onMouseEnter={textEnter}
                 onMouseLeave={textLeave}
               >

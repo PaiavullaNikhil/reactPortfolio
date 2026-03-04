@@ -162,28 +162,6 @@ const About = () => {
     };
   }, []);
 
-  const dopplerEffect = {
-    rest: {
-      scale: 1,
-      transition: { duration: 0.5, type: "tween", ease: "easeInOut" },
-    },
-    hover: {
-      scale: 1.1,
-      transition: { duration: 0.5, type: "tween", ease: "easeInOut" },
-    },
-  };
-
-  const headingEffect = {
-    rest: {
-      scale: 1,
-      transition: { duration: 0.5, type: "tween", ease: "easeInOut" },
-    },
-    hover: {
-      scale: 1.05, // Slightly reduced scale for better consistency with other components
-      transition: { duration: 0.5, type: "tween", ease: "easeInOut" },
-    },
-  };
-
   return (
     <>
       <div id="about" className="relative w-full min-h-screen bg-zinc-900 overflow-x-hidden">
@@ -198,43 +176,68 @@ const About = () => {
           {/* Text Section */}
           <div className="w-full lg:w-3/5 order-2 lg:order-1 mt-12 lg:mt-12">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
+              viewport={{ amount: 0.3 }}
               className="w-full lg:pr-12"
             >
               <motion.h1
-                className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 hover:scale-105 transition duration-300 ease-in-out"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.1 }}
+                viewport={{ amount: 0.4 }}
+                className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 transition-colors duration-300 ease-in-out hover:text-zinc-100"
                 onMouseEnter={textEnter}
                 onMouseLeave={textLeave}
-                variants={headingEffect}
-                whileHover={{ scale: 1.05 }}
               >
                 <span className="text-white">About</span>{" "}
                 <span className="text-red-500 font-[HelloSwashes]">Me</span>
               </motion.h1>
 
               <motion.p
-                className="text-2xl md:text-3xl lg:text-4xl text-white mb-8 leading-relaxed"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.25 }}
+                viewport={{ amount: 0.4 }}
+                className="text-xl md:text-2xl text-zinc-400 mb-6 leading-relaxed transition-colors duration-300 hover:text-zinc-100"
                 onMouseEnter={textEnter}
                 onMouseLeave={textLeave}
-                variants={dopplerEffect}
-                whileHover="hover"
               >
-                I am Nikhil, a passionate web developer crafting seamless,
-                <span className="text-red-500 font-bold"> interactive</span>, and visually striking experiences for the web. I care about clarity,
-                performance, and the small details that make interfaces feel fast and polished.
+                Hey, I'm Nikhil 👋
+                <br />
+                Your friendly neighborhood developer who enjoys building things
+                for the web.
               </motion.p>
 
               <motion.p
-                className="text-xl md:text-2xl text-zinc-400 mb-8 leading-relaxed"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.35 }}
+                viewport={{ amount: 0.4 }}
+                className="text-xl md:text-2xl text-zinc-400 mb-6 leading-relaxed transition-colors duration-300 hover:text-zinc-100"
                 onMouseEnter={textEnter}
                 onMouseLeave={textLeave}
-                variants={dopplerEffect}
-                whileHover="hover"
               >
-                I build clean user interfaces and solid backend systems. Currently exploring ML/AI to add practical, data‑driven features. Recent work:
-                World Bank–funded GKVK dashboards and a voice‑enabled chatbot.
+                I like creating clean interfaces, fast web apps, and solid
+                backend systems that keep everything running smoothly. Most of
+                the time I’m working on web applications, but I also build the
+                occasional mobile app when it makes sense.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.45 }}
+                viewport={{ amount: 0.4 }}
+                className="text-xl md:text-2xl text-zinc-400 mb-6 leading-relaxed transition-colors duration-300 hover:text-zinc-100"
+                onMouseEnter={textEnter}
+                onMouseLeave={textLeave}
+              >
+                I enjoy turning ideas into real products and paying attention to
+                the small details that make an app feel polished and easy to
+                use. Always learning, experimenting, and building better things
+                with every project.
               </motion.p>
 
               {/* Social Media Icons */}
