@@ -36,18 +36,17 @@ const Experience = () => {
         "Handled on-page SEO, content structure, and performance optimizations to improve search visibility and organic traffic.",
       ],
     },
-    // {
-    //   company: "Freelance",
-    //   location: "Remote / Global",
-    //   role: "Freelance Full-Stack Developer",
-    //   dates: "Freelance - Ongoing",
-    //   bullets: [
-    //     "Designed and built responsive websites for local and global businesses, including a restaurant brand (NELO Shawarma), while managing one-to-one client communication.",
-    //     "Developed a Blinkit-like on-demand delivery platform (Bromills), including a cross-platform mobile app nearing deployment on Play Store and App Store, and a redesigned marketing website.",
-    //     "Currently working with Abu Dhabi-based Al Shamra Group to modernize their digital presence across multiple product lines such as rubber, polyurethane, mechanical components, carbon brushes, and fabricated mesh.",
-    //     "Handled end-to-end delivery across UX, front-end and back-end implementation, performance, and SEO for small to mid-sized businesses.",
-    //   ],
-    // },
+    {
+      company: "Al Shamra Group",
+      location: "Abu Dhabi, UAE (Remote)",
+      role: "Freelance Full-Stack Developer",
+      dates: "2025",
+      bullets: [
+        "Designed and developed 4 websites including a main site connecting three business divisions, modernizing the company’s digital presence.",
+        "Built reusable UI components and improved performance and SEO, achieving Lighthouse scores in the 80–100 range.",
+        "Implemented backend features for managing media, career listings, and downloadable documents, handling end-to-end delivery."
+      ],
+    }
   ];
 
   return (
